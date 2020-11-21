@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Run this workflow every day
+  schedule:
+    - cron: '0 0 * * *'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    name: OTP ${{matrix.otp}} on ${{ matrix.os }}
+    strategy:
+      matrix:
+        otp: ['17.0', '23.0-rc3', '21.3.8.18']
+        os: ['ubuntu-20.04', 'ubuntu-18.04', 'ubuntu-latest', 'ubuntu-16.04']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: install-otp
+        uses: ./
+        with: 
+          otp-version: ${{matrix.otp}}
+      - shell: bash
+        run: "[ ${{matrix.otp}} == ${{steps.install-otp.outputs.otp-version}} ]"

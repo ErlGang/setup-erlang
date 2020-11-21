@@ -1,4 +1,5 @@
 # setup-erlang
+[![](https://github.com/ErlGang/setup-erlang/workflows/CI/badge.svg)](https://github.com/ErlGang/setup-erlang/actions?query=workflow%3ACI)
 
 This action sets up an Erlang environment.
 
