@@ -1,6 +1,9 @@
-name: Setup Erlang
-description: Set up a specific version of OTP
+name: Setup OTP
+description: Set up a specific version of Erlang/OTP
 author: ErlGang
+branding:
+  color: red
+  icon: code
 inputs:
   otp-version:
     description: Exact version of OTP to use
