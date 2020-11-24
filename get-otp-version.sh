@@ -7,10 +7,9 @@ read -d '' erl_code <<- EOF || true
 	OtpRel = erlang:system_info(otp_release),
 	OtpVerFile = filename:join([RootDir, "releases",
 	                            OtpRel, "OTP_VERSION"]),
-	io:format("~s", [OtpVerFile]),
+	{ok, OtpVer} = file:read_file(OtpVerFile),
+	io:format("::set-output name=otp-version::~s", [OtpVer]),
 	init:stop().
 EOF
 
-otp_version_file="$(erl -eval "$erl_code" -noshell)"
-otp_version="$(cat "$otp_version_file")"
-echo "::set-output name=otp-version::${otp_version}"
+erl -eval "$erl_code" -noshell
