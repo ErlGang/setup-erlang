@@ -29,5 +29,8 @@ jobs:
         uses: ./
         with: 
           otp-version: ${{matrix.otp}}
+      - id: get-otp-version
+        shell: bash
+        run: ./get-otp-version.sh
       - shell: bash
-        run: "[ ${{matrix.otp}} == ${{steps.install-otp.outputs.otp-version}} ]"
+        run: "[ ${{matrix.otp}} == ${{steps.get-otp-version.outputs.otp-version}} ]"

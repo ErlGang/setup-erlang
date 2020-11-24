@@ -4,10 +4,6 @@ author: ErlGang
 inputs:
   otp-version:
     description: Exact version of OTP to use
-outputs:
-  otp-version:
-    description: Exact version of OTP that was installed
-    value: ${{ steps.install-otp.outputs.otp-version }}
 runs:
   using: "composite"
   steps:

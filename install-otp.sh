@@ -27,7 +27,3 @@ echo "Installing Erlang"
 
 echo "Adding '${otp_dir}/bin' to GITHUB_PATH"
 echo "${otp_dir}/bin" >> "$GITHUB_PATH"
-
-## returning otp-version output value
-otp_version="$(cat "${otp_dir}/releases/"*"/OTP_VERSION")"
-echo "::set-output name=otp-version::${otp_version}"
